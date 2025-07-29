@@ -298,7 +298,7 @@
         // Lưu dữ liệu vào Google Sheets (giả lập)
         function saveToGoogleSheets(data) {
             // Thay thế URL này bằng Google Apps Script Web App URL của bạn
-            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsFzva_D3Z8FIYG3bnoyk7ds8kdTL4c4D5RPiZw0-EHLwWEXHeiBr8QMS05aOLwmJt/exec';
             
             return fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
@@ -341,7 +341,7 @@
                 
                 // Thiết lập link download (thay thế bằng link tài liệu thực tế)
                 const downloadBtn = document.getElementById('downloadBtn');
-                downloadBtn.href = 'https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing'; // Thay bằng link thực tế
+                downloadBtn.href = 'https://drive.google.com/file/d/1dkS7DY-L8vA1AaEVcdR-roZxsTE_X6dp/view?usp=sharing'; // Thay bằng link thực tế
                 
                 // Tạo hiệu ứng pháo hoa
                 createFireworks();
