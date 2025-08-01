@@ -19,15 +19,12 @@
 
         .container {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             padding: 40px;
             max-width: 500px;
             width: 100%;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
         .gift-icon { font-size: 60px; margin-bottom: 20px; animation: bounce 2s infinite; }
@@ -124,7 +121,10 @@
             document.querySelector('.submit-btn').disabled = true;
 
             try {
-                await saveToGoogleSheets(formData);
+                const response = await saveToGoogleSheets(formData);
+                console.log("📌 Response từ Google Script:", response);
+
+                alert("✅ Gửi dữ liệu thành công! Hãy kiểm tra Google Sheet.");
 
                 document.getElementById('giftForm').style.display = 'none';
                 document.querySelector('.loading').style.display = 'none';
@@ -135,7 +135,7 @@
                     'https://drive.google.com/file/d/1dkS7DY-L8vA1AaEVcdR-roZxsTE_X6dp/view?usp=sharing';
 
             } catch (error) {
-                console.error('Lỗi khi lưu dữ liệu:', error);
+                console.error('❌ Lỗi khi lưu dữ liệu:', error);
                 alert('Có lỗi xảy ra. Vui lòng thử lại!');
                 document.querySelector('.loading').style.display = 'none';
                 document.querySelector('.submit-btn').disabled = false;
