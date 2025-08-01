@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quà Tặng Đặc Biệt Dành Cho Học Viên</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,213 +30,46 @@
             overflow: hidden;
         }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
-        }
+        .gift-icon { font-size: 60px; margin-bottom: 20px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
+        h1 { color: #2c3e50; margin-bottom: 10px; font-size: 28px; font-weight: 700; }
+        .subtitle { color: #7f8c8d; margin-bottom: 30px; font-size: 16px; line-height: 1.5; }
 
-        .gift-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 8px; color: #2c3e50; font-weight: 600; font-size: 14px; }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 28px;
-            font-weight: 700;
-        }
-
-        .subtitle {
-            color: #7f8c8d;
-            margin-bottom: 30px;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-            position: relative;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #2c3e50;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        input[type="text"],
-        input[type="email"] {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e0e6ed;
-            border-radius: 12px;
-            font-size: 16px;
+        input[type="text"], input[type="email"] {
+            width: 100%; padding: 15px 20px; border: 2px solid #e0e6ed;
+            border-radius: 12px; font-size: 16px; background: #f8f9fa;
             transition: all 0.3s ease;
-            background: #f8f9fa;
         }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus {
-            outline: none;
-            border-color: #667eea;
-            background: white;
+        input:focus {
+            outline: none; border-color: #667eea; background: white;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
             transform: translateY(-2px);
         }
 
         .submit-btn {
-            width: 100%;
-            padding: 18px;
+            width: 100%; padding: 18px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            position: relative;
-            overflow: hidden;
+            color: white; border: none; border-radius: 12px;
+            font-size: 18px; font-weight: 600; cursor: pointer;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .submit-btn:active {
-            transform: translateY(-1px);
-        }
-
-        .download-section {
-            display: none;
-            animation: fadeInUp 0.6s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .success-message {
-            color: #27ae60;
-            margin-bottom: 25px;
-            font-size: 18px;
-            font-weight: 600;
-        }
-
+        .loading { display: none; color: #667eea; font-size: 16px; margin-top: 10px; }
+        .download-section { display: none; animation: fadeInUp 0.6s ease; }
+        .success-message { color: #27ae60; margin-bottom: 25px; font-size: 18px; font-weight: 600; }
         .download-btn {
-            display: inline-block;
-            padding: 20px 40px;
+            display: inline-block; padding: 20px 40px;
             background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(243, 156, 18, 0.4);
-        }
-
-        .download-btn::before {
-            content: '🎁';
-            margin-right: 10px;
-            font-size: 20px;
-        }
-
-        .sparkles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .sparkle {
-            position: absolute;
-            color: #f39c12;
-            font-size: 16px;
-            animation: sparkle 2s infinite;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-
-        .loading {
-            display: none;
-            color: #667eea;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-
-        .loading::after {
-            content: '';
-            animation: dots 1.5s infinite;
-        }
-
-        @keyframes dots {
-            0%, 33% { content: '.'; }
-            34%, 66% { content: '..'; }
-            67%, 100% { content: '...'; }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 30px 20px;
-                margin: 10px;
-            }
-            
-            h1 {
-                font-size: 24px;
-            }
-            
-            .gift-icon {
-                font-size: 50px;
-            }
+            color: white; text-decoration: none; border-radius: 12px;
+            font-size: 18px; font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="sparkles"></div>
-        
         <div class="gift-icon">🎁</div>
         <h1>Quà Tặng Đặc Biệt</h1>
         <p class="subtitle">Nhận ngay tài liệu học tập miễn phí dành riêng cho học viên của chúng tôi!</p>
@@ -250,167 +79,67 @@
                 <label for="name">Họ và tên *</label>
                 <input type="text" id="name" name="name" required placeholder="Nhập họ và tên của bạn">
             </div>
-            
             <div class="form-group">
                 <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required placeholder="Nhập địa chỉ email của bạn">
+                <input type="email" id="email" name="email" required placeholder="Nhập email của bạn">
             </div>
-            
             <div class="form-group">
                 <label for="address">Địa chỉ *</label>
                 <input type="text" id="address" name="address" required placeholder="Nhập địa chỉ của bạn">
             </div>
-            
-            <button type="submit" class="submit-btn">
-                🎉 Nhận Quà Tặng Ngay
-            </button>
-            
-            <div class="loading">Đang xử lý thông tin</div>
+            <button type="submit" class="submit-btn">🎉 Nhận Quà Tặng Ngay</button>
+            <div class="loading">Đang xử lý thông tin...</div>
         </form>
         
         <div id="downloadSection" class="download-section">
-            <div class="success-message">
-                ✅ Cảm ơn bạn! Thông tin đã được ghi nhận thành công.
-            </div>
-            <a href="#" id="downloadBtn" class="download-btn" target="_blank">
-                Tải Quà Tặng Ngay
-            </a>
+            <div class="success-message">✅ Cảm ơn bạn! Thông tin đã được ghi nhận thành công.</div>
+            <a href="#" id="downloadBtn" class="download-btn" target="_blank">Tải Quà Tặng Ngay</a>
         </div>
     </div>
 
     <script>
-        // Tạo hiệu ứng sparkles
-        function createSparkles() {
-            const sparklesContainer = document.querySelector('.sparkles');
-            const sparkleCount = 20;
-            
-            for (let i = 0; i < sparkleCount; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.innerHTML = '✨';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.animationDelay = Math.random() * 2 + 's';
-                sparklesContainer.appendChild(sparkle);
-            }
+        // URL Apps Script Web App của bạn
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw6J0hnQTHIcNIb2h5Rn7nnjyNKPGoyJ4P0pmACTRKRWcjA9rmmRBNTBp85rbnPdHVN/exec';
+
+        // Hàm gửi dữ liệu lên Google Sheets
+        function saveToGoogleSheets(data) {
+            return fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(res => res.json());
         }
 
-        // Lưu dữ liệu vào Google Sheets (giả lập)
-        function saveToGoogleSheets(data) {
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxFBsLXGl-ZnVXkIDyScgcRGd-QRPyvcDACj5m_CrR1HaURnBzo-BqJtzpFpNTIPWZg/exec';
-    
-    return fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    }).then(res => res.json());
-}
-        // Xử lý form submit
+        // Xử lý submit form
         document.getElementById('giftForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 address: document.getElementById('address').value,
                 timestamp: new Date().toISOString()
             };
-            
-            // Hiển thị loading
+
             document.querySelector('.loading').style.display = 'block';
             document.querySelector('.submit-btn').disabled = true;
-            
- try {
-    // Gửi dữ liệu tới Google Apps Script
-    await saveToGoogleSheets(formData);
 
-    // Nếu gửi thành công, ẩn form và hiển thị nút download
-    document.getElementById('giftForm').style.display = 'none';
-    document.querySelector('.loading').style.display = 'none';
-    document.getElementById('downloadSection').style.display = 'block';
+            try {
+                await saveToGoogleSheets(formData);
 
-    // Thiết lập link download (tài liệu thật của bạn)
-    const downloadBtn = document.getElementById('downloadBtn');
-    downloadBtn.href = 'https://drive.google.com/file/d/1dkS7DY-L8vA1AaEVcdR-roZxsTE_X6dp/view?usp=sharing';
-
-    // Tạo hiệu ứng pháo hoa
-    createFireworks();
-
-} catch (error) {
-    console.error('Lỗi khi lưu dữ liệu:', error);
-    alert('Có lỗi xảy ra. Vui lòng thử lại!');
-    document.querySelector('.loading').style.display = 'none';
-    document.querySelector('.submit-btn').disabled = false;
-}
-                // Ẩn form và hiển thị nút download
                 document.getElementById('giftForm').style.display = 'none';
                 document.querySelector('.loading').style.display = 'none';
                 document.getElementById('downloadSection').style.display = 'block';
-                
-                // Thiết lập link download (thay thế bằng link tài liệu thực tế)
-                const downloadBtn = document.getElementById('downloadBtn');
-                downloadBtn.href = 'https://drive.google.com/file/d/1dkS7DY-L8vA1AaEVcdR-roZxsTE_X6dp/view?usp=sharing'; // Thay bằng link thực tế
-                
-                // Tạo hiệu ứng pháo hoa
-                createFireworks();
-                
+
+                // Link file quà tặng (Google Drive)
+                document.getElementById('downloadBtn').href =
+                    'https://drive.google.com/file/d/1dkS7DY-L8vA1AaEVcdR-roZxsTE_X6dp/view?usp=sharing';
+
             } catch (error) {
                 console.error('Lỗi khi lưu dữ liệu:', error);
                 alert('Có lỗi xảy ra. Vui lòng thử lại!');
                 document.querySelector('.loading').style.display = 'none';
                 document.querySelector('.submit-btn').disabled = false;
             }
-        });
-
-        // Tạo hiệu ứng pháo hoa
-        function createFireworks() {
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b'];
-            
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    const firework = document.createElement('div');
-                    firework.innerHTML = '🎉';
-                    firework.style.position = 'fixed';
-                    firework.style.left = Math.random() * window.innerWidth + 'px';
-                    firework.style.top = Math.random() * window.innerHeight + 'px';
-                    firework.style.fontSize = '30px';
-                    firework.style.pointerEvents = 'none';
-                    firework.style.zIndex = '9999';
-                    firework.style.animation = 'fadeOut 2s ease-out forwards';
-                    
-                    document.body.appendChild(firework);
-                    
-                    setTimeout(() => {
-                        document.body.removeChild(firework);
-                    }, 2000);
-                }, i * 100);
-            }
-        }
-
-        // Thêm CSS cho animation fadeOut
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeOut {
-                0% { opacity: 1; transform: scale(1) translateY(0); }
-                100% { opacity: 0; transform: scale(0.5) translateY(-100px); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Khởi tạo sparkles khi trang load
-        window.addEventListener('load', createSparkles);
-
-        // Thêm hiệu ứng focus cho inputs
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'scale(1.02)';
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'scale(1)';
-            });
         });
     </script>
 </body>
