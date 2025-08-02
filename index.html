@@ -6,7 +6,6 @@
     <title>Quà Tặng Đặc Biệt Dành Cho Học Viên</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -16,7 +15,6 @@
             justify-content: center;
             padding: 20px;
         }
-
         .container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -26,16 +24,12 @@
             width: 100%;
             text-align: center;
         }
-
         .gift-icon { font-size: 60px; margin-bottom: 20px; animation: bounce 2s infinite; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
         h1 { color: #2c3e50; margin-bottom: 10px; font-size: 28px; font-weight: 700; }
         .subtitle { color: #7f8c8d; margin-bottom: 30px; font-size: 16px; line-height: 1.5; }
-
         .form-group { margin-bottom: 20px; text-align: left; }
         label { display: block; margin-bottom: 8px; color: #2c3e50; font-weight: 600; font-size: 14px; }
-
         input[type="text"], input[type="email"] {
             width: 100%; padding: 15px 20px; border: 2px solid #e0e6ed;
             border-radius: 12px; font-size: 16px; background: #f8f9fa;
@@ -46,14 +40,12 @@
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
             transform: translateY(-2px);
         }
-
         .submit-btn {
             width: 100%; padding: 18px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white; border: none; border-radius: 12px;
             font-size: 18px; font-weight: 600; cursor: pointer;
         }
-
         .loading { display: none; color: #667eea; font-size: 16px; margin-top: 10px; }
         .download-section { display: none; animation: fadeInUp 0.6s ease; }
         .success-message { color: #27ae60; margin-bottom: 25px; font-size: 18px; font-weight: 600; }
@@ -95,8 +87,8 @@
     </div>
 
     <script>
-        // URL Apps Script Web App của bạn
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxFBsLXGl-ZnVXkIDyScgcRGd-QRPyvcDACj5m_CrR1HaURnBzo-BqJtzpFpNTIPWZg/exec';
+        // URL Apps Script Web App của bạn (phải có /exec)
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxFBsLXGI-ZnVXkIDyScgcRGd-QRPyvcDACj5m_CrR1HaURnBzo-BqJtzpFpNTIPWZg/exec';
 
         // Hàm gửi dữ liệu lên Google Sheets
         function saveToGoogleSheets(data) {
@@ -104,7 +96,12 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
-            }).then(res => res.json());
+            })
+            .then(async res => {
+                const text = await res.text();
+                console.log("📌 Raw response từ Apps Script:", text);
+                return JSON.parse(text);
+            });
         }
 
         // Xử lý submit form
@@ -122,17 +119,18 @@
 
             try {
                 const response = await saveToGoogleSheets(formData);
-                console.log("📌 Response từ Google Script:", response);
+                console.log("📥 Response parse:", response);
 
-                alert("✅ Gửi dữ liệu thành công! Hãy kiểm tra Google Sheet.");
-
-                document.getElementById('giftForm').style.display = 'none';
-                document.querySelector('.loading').style.display = 'none';
-                document.getElementById('downloadSection').style.display = 'block';
-
-                // Link file quà tặng (Google Drive)
-                document.getElementById('downloadBtn').href =
-                    'https://drive.google.com/file/d/1dkS7DY-L8vA1AaEVcdR-roZxsTE_X6dp/view?usp=sharing';
+                if (response.result === "success" || response.status === "success") {
+                    alert("✅ Gửi dữ liệu thành công! Hãy kiểm tra Google Sheet.");
+                    document.getElementById('giftForm').style.display = 'none';
+                    document.querySelector('.loading').style.display = 'none';
+                    document.getElementById('downloadSection').style.display = 'block';
+                    document.getElementById('downloadBtn').href =
+                        'https://drive.google.com/file/d/1dkS7DY-L8vA1AaEVcdR-roZxsTE_X6dp/view?usp=sharing';
+                } else {
+                    throw new Error(response.message || "Unknown error");
+                }
 
             } catch (error) {
                 console.error('❌ Lỗi khi lưu dữ liệu:', error);
