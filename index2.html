@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>🎁 Quà Tặng Đặc Biệt</title>
+  <style>
+    /* ▶️ CSS đơn giản cho giao diện */
+    body {
+      margin:0; padding:0;
+      font-family:sans-serif;
+      background: linear-gradient(135deg,#6B73FF,#000DFF);
+      display:flex;justify-content:center;align-items:center;height:100vh;
+      color:#333;
+    }
+    .card {
+      background:#fff; padding:30px; border-radius:12px;
+      width:360px; box-shadow:0 8px 20px rgba(0,0,0,0.2);
+      text-align:center;
+    }
+    .card h1 { margin-bottom:10px; }
+    .card form { display:flex; flex-direction:column; }
+    .card label { text-align:left; margin:12px 0 4px; }
+    input, select {
+      padding:10px; border:1px solid#ccc; border-radius:6px;
+      font-size:14px;
+    }
+    button {
+      margin-top:20px; padding:12px;
+      background:linear-gradient(90deg,#FF8A00,#E52E71);
+      border:none; border-radius:6px;
+      color:#fff; font-size:16px; cursor:pointer;
+    }
+    button:hover { opacity:0.9; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🎁 Quà Tặng Đặc Biệt</h1>
+    <p>Nhập thông tin để nhận tài liệu miễn phí!</p>
+    <!-- 🔗 Form POST về Apps Script Web App -->
+    <form method="post" action="https://script.google.com/macros/s/AKfycbxK4rFpKVJ9SztbAzeGshrt8J7TiOugRPL_6nk2Eo5U7H0Ca8QuSislA-EwUP0I_ecD/exec">
+      <label>Họ và tên *</label>
+      <input type="text" name="name" required placeholder="Nguyễn Văn A">
+      <label>Email *</label>
+      <input type="email" name="email" required placeholder="email@domain.com">
+      <label>Địa chỉ *</label>
+      <select name="address" required>
+        <option value="">-- Chọn tỉnh/thành --</option>
+        <option value="Hà Nội">Hà Nội</option>
+        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+        <option value="Đà Nẵng">Đà Nẵng</option>
+        <option value="Hải Phòng">Hải Phòng</option>
+        <option value="Cần Thơ">Cần Thơ</option>
+        <!-- … tiếp tục thêm 29 tỉnh/thành nữa -->
+      </select>
+      <button type="submit">🎉 Nhận Quà Tặng Ngay</button>
+    </form>
+  </div>
+</body>
+</html>
