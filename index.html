@@ -87,10 +87,8 @@
     </div>
 
     <script>
-        // URL Apps Script Web App của bạn (phải có /exec)
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzP5SZ5C0eYkxPLhPgGcMvyeuyQ0atl90VLqC2aZaXOnoqprCMX8a4LRt00yZDYBnVJNQ/exec';
 
-        // Hàm gửi dữ liệu lên Google Sheets
         function saveToGoogleSheets(data) {
             return fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
@@ -104,7 +102,6 @@
             });
         }
 
-        // Xử lý submit form
         document.getElementById('giftForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const formData = {
@@ -121,7 +118,7 @@
                 const response = await saveToGoogleSheets(formData);
                 console.log("📥 Response parse:", response);
 
-                if (response.result === "success" || response.status === "success") {
+                if (response.status === "success") {
                     alert("✅ Gửi dữ liệu thành công! Hãy kiểm tra Google Sheet.");
                     document.getElementById('giftForm').style.display = 'none';
                     document.querySelector('.loading').style.display = 'none';
